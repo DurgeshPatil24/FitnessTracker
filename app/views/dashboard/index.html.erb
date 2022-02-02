@@ -1,0 +1,30 @@
+<%= render 'header'%>
+  <% if current_user&.admin? %>
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+      <h2>Total Number of Users: <%= @all_user.count%></h2>
+      <table>
+      <tr>
+        <th>No. &nbsp; &nbsp; &nbsp;</th>
+        <th>Email ID</th>
+        <th>Joined on</th>
+      </tr>
+      <% count = 1 %>
+      <% @all_user.each.each do |u| %>
+      <tr>
+        <td><%= count %></td>
+        <td><%= u.email %>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;</td>
+        <td><%= u.created_at.to_date %></td>
+      </tr>
+        <% count += 1 %>
+    <% end %>
+  </table> 
+    </div>
+  </div>
+    <%else%>
+      <%= render 'dashboard' %>
+    <% end %>
+  <% if user_signed_in? %>
+  <% else %>
+  <% end %>
+<%= render 'footer'%>
